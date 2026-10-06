@@ -1,0 +1,7 @@
+# Restream IPTV Suite requires Python 3.8+
+# The core Restream Proxy Server & Web Player has ZERO external dependencies!
+# It runs out-of-the-box using Python's standard library.
+#
+# Optional enhancements:
+# For RTMP live restreaming to YouTube/Facebook, install FFmpeg on your machine:
+#   Windows: winget install Gyan.FFmpeg
