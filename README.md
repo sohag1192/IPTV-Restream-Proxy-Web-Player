@@ -1,5 +1,9 @@
 # 📺 IPTV Restream Proxy & Web Player
 
+<p align="center">
+  <img src="Screenshot_1.png" alt="Restream IPTV Web Player Preview" width="100%">
+</p>
+
 A high-performance, zero-dependency streaming bridge and local IPTV proxy server designed for Cloudflare-protected M3U playlists with custom header requirements (`User-Agent`, `Referer`, `Origin`).
 
 ---
