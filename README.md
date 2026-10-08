@@ -1,8 +1,17 @@
 # 📺 IPTV Restream Proxy & Web Player
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20Ubuntu-orange?style=flat-square" alt="Platform">
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square" alt="Status">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Freyad27s%2FRestream&count_bg=%232563EB&title_bg=%231E293B&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=true" alt="Hit Counter"/></a>
+  <img src="https://api.visitorbadge.io/api/visitors?pageUrl=https%3A%2F%2Fgithub.com%2Freyad27s%2FRestream&label=VISITORS&countColor=%232563eb&style=flat-square" alt="Visitors"/>
+</p>
+
+<p align="center">
   <img src="Screenshot_1.png" alt="Restream IPTV Web Player Preview" width="100%">
 </p>
+
 
 A high-performance, zero-dependency streaming bridge and local IPTV proxy server designed for Cloudflare-protected M3U playlists with custom header requirements (`User-Agent`, `Referer`, `Origin`).
 
