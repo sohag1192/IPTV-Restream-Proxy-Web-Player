@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Local cache & playlists
+*.log
+playlist_raw.m3u
+toffee_raw.m3u
+playlist_cache.json
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+
+# Distribution zip files
+*.zip

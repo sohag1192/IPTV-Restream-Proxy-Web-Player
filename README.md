@@ -1,19 +1,33 @@
 # 📺 IPTV Restream Proxy & Web Player
 
 <p align="center">
+  <a href="https://github.com/sohag1192/IPTV-Restream-Proxy-Web-Player/releases/latest"><img src="https://img.shields.io/github/v/release/sohag1192/IPTV-Restream-Proxy-Web-Player?style=flat-square&color=2563eb&label=Latest%20Release" alt="Latest Release"></a>
   <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20Ubuntu-orange?style=flat-square" alt="Platform">
-  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square" alt="Status">
-  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Freyad27s%2FRestream&count_bg=%232563EB&title_bg=%231E293B&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=true" alt="Hit Counter"/></a>
-  <img src="https://api.visitorbadge.io/api/visitors?pageUrl=https%3A%2F%2Fgithub.com%2Freyad27s%2FRestream&label=VISITORS&countColor=%232563eb&style=flat-square" alt="Visitors"/>
+  <img src="https://img.shields.io/badge/Auto%20Release-Active-brightgreen?style=flat-square" alt="Auto Release">
+  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsohag1192%2FIPTV-Restream-Proxy-Web-Player&count_bg=%232563EB&title_bg=%231E293B&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=true" alt="Hit Counter"/></a>
+  <img src="https://api.visitorbadge.io/api/visitors?pageUrl=https%3A%2F%2Fgithub.com%2Fsohag1192%2FIPTV-Restream-Proxy-Web-Player&label=VISITORS&countColor=%232563eb&style=flat-square" alt="Visitors"/>
+</p>
+
+<p align="center">
+  <a href="https://github.com/sohag1192/IPTV-Restream-Proxy-Web-Player/releases/latest/download/IPTV-Restream-latest.zip">
+    <img src="https://img.shields.io/badge/⬇️%20Download-Latest%20Release%20(ZIP)-success?style=for-the-badge&logo=github&logoColor=white" alt="Download ZIP">
+  </a>
 </p>
 
 <p align="center">
   <img src="Screenshot_1.png" alt="Restream IPTV Web Player Preview" width="100%">
 </p>
 
-
 A high-performance, zero-dependency streaming bridge and local IPTV proxy server designed for Cloudflare-protected M3U playlists with custom header requirements (`User-Agent`, `Referer`, `Origin`).
+
+---
+
+## 📦 Direct Downloads & Releases
+
+- 📥 **[Download Latest Version (ZIP)](https://github.com/sohag1192/IPTV-Restream-Proxy-Web-Player/releases/latest/download/IPTV-Restream-latest.zip)** (Always points to the newest release)
+- 🏷️ **[View All Releases & Version Tags](https://github.com/sohag1192/IPTV-Restream-Proxy-Web-Player/releases)**
+- 🔄 **Auto Release System**: Every new push automatically increments the version tag (`v1.0.0`, `v1.0.1`, `v1.0.2`...) and generates a fresh GitHub release with pre-packaged ZIP archives!
 
 ---
 

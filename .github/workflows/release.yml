@@ -1,0 +1,126 @@
+name: Auto Release New Version
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/**'
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Publish Release
+    runs-on: ubuntu-latest
+
+    # Skip release if commit message contains [skip release] or [skip ci]
+    if: "!contains(github.event.head_commit.message, '[skip release]') && !contains(github.event.head_commit.message, '[skip ci]')"
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git User
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Determine Next Semantic Version Tag
+        id: versioning
+        run: |
+          # Fetch all existing tags
+          git fetch --tags --force
+
+          # Get latest tag
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$LATEST_TAG" ]; then
+            NEW_TAG="v1.0.0"
+            echo "No existing tags found. Starting at $NEW_TAG"
+          else
+            echo "Current latest tag: $LATEST_TAG"
+            VERSION="${LATEST_TAG#v}"
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+
+            # Default fallback if parsing fails
+            MAJOR=${MAJOR:-1}
+            MINOR=${MINOR:-0}
+            PATCH=${PATCH:-0}
+
+            BUMP_TYPE="${{ github.event.inputs.bump_type || 'patch' }}"
+
+            if [ "$BUMP_TYPE" = "major" ]; then
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+            elif [ "$BUMP_TYPE" = "minor" ]; then
+              MINOR=$((MINOR + 1))
+              PATCH=0
+            else
+              PATCH=$((PATCH + 1))
+            fi
+
+            NEW_TAG="v${MAJOR}.${MINOR}.${PATCH}"
+          fi
+
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          echo "tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          echo "Calculated new version: $NEW_TAG"
+
+      - name: Create and Push Git Tag
+        run: |
+          git tag -a "${{ env.NEW_TAG }}" -m "Release ${{ env.NEW_TAG }}"
+          git push origin "${{ env.NEW_TAG }}"
+
+      - name: Package Distribution ZIP Archive
+        run: |
+          PKG_NAME="IPTV-Restream-${{ env.NEW_TAG }}"
+          LATEST_PKG="IPTV-Restream-latest"
+
+          # Create temporary packaging folder
+          mkdir -p dist_tmp/"$PKG_NAME"
+
+          # Copy files excluding git, cache, and temp files
+          rsync -av --exclude='.git*' \
+                    --exclude='dist_tmp' \
+                    --exclude='__pycache__' \
+                    --exclude='*.pyc' \
+                    --exclude='*.log' \
+                    --exclude='*.m3u' \
+                    --exclude='*.zip' \
+                    ./ dist_tmp/"$PKG_NAME"/
+
+          cd dist_tmp
+          zip -r "../${PKG_NAME}.zip" "$PKG_NAME"
+          cd ..
+
+          # Also create a fixed-name IPTV-Restream-latest.zip
+          cp "${PKG_NAME}.zip" "${LATEST_PKG}.zip"
+
+          ls -lh *.zip
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ env.NEW_TAG }}" \
+            "IPTV-Restream-${{ env.NEW_TAG }}.zip" \
+            "IPTV-Restream-latest.zip" \
+            --title "Release ${{ env.NEW_TAG }}" \
+            --generate-notes \
+            --latest
